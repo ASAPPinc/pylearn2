@@ -254,6 +254,6 @@ class CIFAR10(dense_design_matrix.DenseDesignMatrix):
 
         _logger.info('loading file %s' % fname)
         fo = open(fname, 'rb')
-        dict = cPickle.load(fo, encoding='latin-1')
+        dict = cPickle.load(fo)
         fo.close()
         return dict
