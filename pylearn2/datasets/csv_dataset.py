@@ -43,7 +43,7 @@ class CSVDataset(DenseDesignMatrix):
     expect_headers : bool
       Whether the CSV file contains column headers.
 
-    delimiter : bool
+    delimiter : str
       The CSV file's delimiter.
 
     start : int
@@ -67,7 +67,8 @@ class CSVDataset(DenseDesignMatrix):
                  start=None,
                  stop=None,
                  start_fraction=None,
-                 end_fraction=None):
+                 end_fraction=None,
+                 **kwargs):
         """
         .. todo::
 
@@ -121,10 +122,10 @@ class CSVDataset(DenseDesignMatrix):
         X, y = self._load_data()
 
         if self.task == 'regression':
-            super(CSVDataset, self).__init__(X=X, y=y)
+            super(CSVDataset, self).__init__(X=X, y=y, **kwargs)
         else:
             super(CSVDataset, self).__init__(X=X, y=y,
-                                             y_labels=np.max(y) + 1)
+                                             y_labels=np.max(y) + 1, **kwargs)
 
     def _load_data(self):
         """
